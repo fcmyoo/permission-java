@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds">
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}[%thread]%-5level %logger - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--<appender name="permission" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+
+        <!--<File>${catalina.home}/logs/permission.log</File>-->
+        <!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+            <!--&lt;!&ndash;<fileNamePattern>/developer/apache-tomcat-7.0.73/logs/mmall.log.%d{yyyy-MM-dd}.gz</fileNamePattern>&ndash;&gt;-->
+            <!--<fileNamePattern>{catalina.home}/logs/permission.log.%d{yyyy-MM-dd}.gz</fileNamePattern>-->
+            <!--<append>true</append>-->
+            <!--<maxHistory>10</maxHistory>-->
+        <!--</rollingPolicy>-->
+        <!--<layout class="ch.qos.logback.classic.PatternLayout">-->
+            <!--<pattern>-->
+                <!--%d{yyyy-MM-dd HH:mm:ss.SSS}[%thread]%-5level %logger - %msg%n-->
+            <!--</pattern>-->
+        <!--</layout>-->
+        <!--<encoder>-->
+            <!--<pattern>[%d{HH:mm:ss.SSS}][%p][%c{40}][%t] %m%n</pattern>-->
+        <!--</encoder>-->
+    <!--</appender>-->
+
+    <!--<logger>-->
+
+    <!--</logger>-->
+
+    <!--track < debug < info < warn < error -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>
