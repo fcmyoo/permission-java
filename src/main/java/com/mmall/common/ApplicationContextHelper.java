@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 public class ApplicationContextHelper implements ApplicationContextAware {
 
     private static ApplicationContext applicationContext;
+
+
     public void setApplicationContext(ApplicationContext context) throws BeansException {
         applicationContext = context;
     }

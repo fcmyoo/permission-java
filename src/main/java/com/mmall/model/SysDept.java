@@ -1,13 +1,25 @@
 package com.mmall.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import java.util.Date;
 
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class SysDept {
+
     private Integer id;
 
     private String name;
 
     private Integer parentId;
+
+    private String parentName;
 
     private String level;
 
@@ -91,5 +103,13 @@ public class SysDept {
 
     public void setOperateIp(String operateIp) {
         this.operateIp = operateIp;
+    }
+
+    public String getParentName() {
+        return parentName;
+    }
+
+    public void setParentName(String parentName) {
+        this.parentName = parentName;
     }
 }
