@@ -13,4 +13,6 @@ public interface ISysDeptService {
     List<SysDept> getDeptByCode(Integer deptId);
 
     boolean checkUnique(String deptName);
+
+    void delDeptById(Integer deptId);
 }

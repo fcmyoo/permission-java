@@ -108,4 +108,14 @@ public class SysDeptService implements ISysDeptService {
         }
         return dept;
     }
+
+    public void delDeptById(Integer deptId) {
+        SysDept dept = sysDeptMapper.selectByPrimaryKey(deptId);
+        Preconditions.checkNotNull(dept, "待删除的部门不存在，无法删除");
+        sysDeptMapper.deleteByPrimaryKey(deptId);
+
+
+
+
+    }
 }

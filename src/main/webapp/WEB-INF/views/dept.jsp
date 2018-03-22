@@ -12,10 +12,27 @@
 <section class="content">
 
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
 
             <!-- Profile Image -->
             <div class="box box-primary">
+                <div class="box-header with-border">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default" data-btn-type="addRoot">
+                            <li class="fa fa-plus">&nbsp;新增根机构</li>
+                        </button>
+                        <button type="button" class="btn btn-default" data-btn-type="add">
+                            <li class="fa fa-plus">&nbsp;新增下级机构</li>
+                        </button>
+                        <button type="button" class="btn btn-default" data-btn-type="edit">
+                            <li class="fa fa-edit">&nbsp;编辑当前机构</li>
+                        </button>
+                        <button type="button" class="btn btn-default" data-btn-type="delete">
+                            <li class="fa fa-remove">&nbsp;删除当前机构</li>
+                        </button>
+                    </div>
+                    <!-- /.box-tools -->
+                </div>
                 <div class="box-body box-profile">
                     <div id="tree"></div>
                 </div>
@@ -24,7 +41,7 @@
             <!-- /.box -->
         </div>
         <!-- /.col -->
-        <div class="col-md-9">
+        <div class="col-md-8">
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <div class="btn-group">
@@ -195,11 +212,20 @@
         },
 
         addRoot: function (action) {
-            this.formWritable(action);
-            this.form.clearForm();
-            //填充上级机构和层级编码
-            this.fillParentAndLevelCode(null);
-            this.btntype = 'add';
+            // console.log(action)
+            modals.openWin({
+                winId:"deptWin",
+                title:"新增根部门",
+                width:"600px",
+                url:"/sys/dept/edit"
+
+            });
+            // self.initTree(selectedNodeId);
+            // this.formWritable(action);
+            // this.form.clearForm();
+            // //填充上级机构和层级编码
+            // this.fillParentAndLevelCode(null);
+            // this.btntype = 'add';
         },
         add: function (action, selectedNode) {
             if (!selectedNode) {
@@ -230,20 +256,20 @@
                 modals.info('请先选择要删除的节点');
                 return false;
             }
-            if (this.btntype == 'add')
-                this.fillOrgForm(selectedNode);
+            // if (this.btntype == 'add')
+            //     this.fillOrgForm(selectedNode);
             this.formReadonly();
             $(".box-header button[data-btn-type='delete']").removeClass("btn-default").addClass("btn-primary");
-            if (selectedNode.nodes.length > 0) {
-                modals.info('该节点含有子节点，请先删除子节点');
+            if (selectedNode.nodes != null) {
+                modals.info('【'+selectedNode.text+'】含有子部门，请先删除子部门');
                 return false;
             }
-            modals.confirm('是否删除该节点', function () {
-                ajaxPost(basePath + "/sys/dept/delete/" + selectedNode.id, null, function (data) {
+            modals.confirm('是否要删除【'+selectedNode.text+'】', function () {
+                ajaxPost(basePath + "/sys/dept/delete?id=" + selectedNode.id, null, function (data) {
                     if (data.ret) {
                         modals.correct('删除成功');
                     } else {
-                        modals.info(data.message);
+                        modals.info(data.msg);
                     }
                     //定位
                     var brothers = $("#tree").data("treeview").getSiblings(selectedNode);

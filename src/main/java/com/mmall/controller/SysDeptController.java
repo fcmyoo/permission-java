@@ -39,6 +39,11 @@ public class SysDeptController {
         return new ModelAndView("dept");
     }
 
+    @RequestMapping("/edit")
+    public ModelAndView edit() {
+
+        return new ModelAndView("dept_edit");
+    }
 
 
     @RequestMapping(value = "/treeData")
@@ -64,7 +69,7 @@ public class SysDeptController {
         return JsonData.success(dtoList);
     }
 
-    @RequestMapping("/update.json")
+    @RequestMapping("/update")
     @ResponseBody
     public JsonData updateDept(DeptParam param) {
         iSysDeptService.update(param);
@@ -74,7 +79,7 @@ public class SysDeptController {
     @RequestMapping("/getId")
     @ResponseBody
     public JsonData getDeptByCode(Integer deptId) {
-        List<SysDept> deptList=iSysDeptService.getDeptByCode(deptId);
+        List<SysDept> deptList = iSysDeptService.getDeptByCode(deptId);
         return JsonData.success(deptList);
     }
 
@@ -86,4 +91,12 @@ public class SysDeptController {
         map.put("valid", list);
         return map;
     }
+
+    @RequestMapping("/delete")
+    @ResponseBody
+    public JsonData delDeptById(DeptParam param) {
+        iSysDeptService.delDeptById(param.getId());
+        return JsonData.success();
+    }
+
 }

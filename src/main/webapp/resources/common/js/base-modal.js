@@ -258,9 +258,10 @@
 	    		var height=$(window).height()>$(this).find(".modal-dialog").eq(0).height()?($(window).height()-$(this).find(".modal-dialog").eq(0).height())/2:0;
 				$(this).find(".modal-dialog").eq(0).css("margin-top",height); 
     		}*/
-            $(this).on('loaded.bs.modal', function(event) {
-                $(this).find(".modal-title").html(config.title);
-            });
+    		$(this).find(".modal-title").html(config.title);
+            // $(this).on('loaded.bs.modal', function(event) {
+            //
+            // });
 			if(config.showFunc)
 	    		   config.showFunc.call(this); 
 		});       

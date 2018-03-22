@@ -27,6 +27,10 @@ public class SysTreeService implements ISysTreeService {
     @Resource
     private SysDeptMapper sysDeptMapper;
 
+    /***
+     * 新的树及递归
+     * @return
+     */
     public List<DeptLevelDto> getTree(){
         List<DeptLevelDto> tnList = null;
         if (tnList != null) {
