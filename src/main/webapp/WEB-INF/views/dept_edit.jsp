@@ -7,7 +7,7 @@
 
 <div class="modal-body">
 
-    <form class="form-horizontal" id="org-form" name="org-form">
+    <form class="form-horizontal bv-form" id="org-form1" name="org-form1">
         <input type="hidden" name="parentId"/>
         <input type="hidden" name="id"/>
         <div class="box-body">
@@ -75,9 +75,10 @@
     var id = "${id?default(0)}";
     $(function () {
         //初始化控件
-        form = $("#org-form").form();
+        form = $("#org-form1").form();
+
         //数据校验
-        $("#org-form").bootstrapValidator({
+        $("#org-form1").bootstrapValidator({
             message: '请输入有效值',
             feedbackIcons: {
                 valid: 'glyphicon glyphicon-ok',
@@ -86,19 +87,12 @@
             },
             submitHandler: function (validator, orgform, submitButton) {
                 modals.confirm('确认保存？', function () {
-                    //Save Data，对应'submit-提交'
-                    var params = self.form.getFormSimpleData();
+                    var params = form.getFormSimpleData();
                     ajaxPost(basePath + '/sys/dept/save', params, function (data) {
                         if (data.ret) {
-                            if(id!="0"){//更新
-                                modals.closeWin(winId);
-                            }else{//新增
-                                //modals.info("数据保存成功");
-                                modals.closeWin(winId);
-                            }
-                            // var selectedArr = $("#tree").data("treeview").getSelected();
-                            // var selectedNodeId = selectedArr.length > 0 ? selectedArr[0].nodeId : 0;
-                            // self.initTree(selectedNodeId);
+                            modals.closeWin(winId);
+                            deptInitTree.initForm();
+
                         }
 
                     });
@@ -122,16 +116,34 @@
         });
         form.initComponent();
         //回填id
-        if (id != "0") {
-                ajaxPost(basePath + "/sys/dept", {id: id}, function (data) {
-                form.initFormData(data);
-            })
+        if (id == "2") {
+            ajaxPost(basePath + "/sys/dept/getId?deptId=" + onNodeSelected.id, null, function (data) {
+                if (data.ret) {
+                    fillOrgForm(data.data[0])
+                }
+            });
+        } else if (id == "1") {
+            ajaxPost(basePath + "/sys/dept/getId?deptId=" + onNodeSelected.id, null, function (data) {
+                if (data.ret) {
+                    $("input[name='parentName']").val(data.data[0].name);
+                    $("input[name='parentId']").val(data.data[0].id);
+                }
+
+            });
+
         }
     });
 
 
     function resetForm() {
         form.clearForm();
-        $("#org-form").data('bootstrapValidator').resetForm();
+        $("#org-form1").data('bootstrapValidator').resetForm();
+    }
+
+    function fillOrgForm(node) {
+        var self = this;
+        ajaxPost(basePath + "/sys/dept/getId?deptId=" + node.id, null, function (data) {
+            self.form.initFormData(data.data[0]);
+        })
     }
 </script>

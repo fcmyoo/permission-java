@@ -15,46 +15,46 @@ function LoginValidator(config) {
 LoginValidator.prototype.initValidator = function () {
     if (!this.code)
         return;
-    if(this.code==0){
-       this.addPasswordErrorMsg();
-    }else if(this.code==1){
+    if (this.code == 0) {
+        this.addPasswordErrorMsg();
+    } else if (this.code == 1) {
         this.addUserNameErrorStyle();
         this.addUserNameErrorMsg();
-    }else if(this.code==2){
+    } else if (this.code == 2) {
         this.addPasswordErrorStyle();
         this.addPasswordErrorMsg();
-    }else if(this.code==3){
+    } else if (this.code == 3) {
         this.addUserNameErrorStyle();
         this.addPasswordErrorStyle();
         this.addPasswordErrorMsg();
     }
     return;
-}
+};
 
 LoginValidator.prototype.addUserNameErrorStyle = function () {
     this.addErrorStyle(this.userName);
-}
+};
 
 LoginValidator.prototype.addPasswordErrorStyle = function () {
     this.addErrorStyle(this.password);
-}
+};
 
 LoginValidator.prototype.addUserNameErrorMsg = function () {
     this.addErrorMsg(this.userName);
-}
+};
 
 LoginValidator.prototype.addPasswordErrorMsg = function () {
     this.addErrorMsg(this.password);
-}
+};
 
 
-LoginValidator.prototype.addErrorMsg=function(field){
-    $("input[name='"+field+"']").parent().append('<small  data-bv-validator="notEmpty" data-bv-validator-for="'+field+'" class="help-block">' + this.message + '</small>');
-}
+LoginValidator.prototype.addErrorMsg = function (field) {
+    $("input[name='" + field + "']").parent().append('<small  data-bv-validator="notEmpty" data-bv-validator-for="' + field + '" class="help-block">' + this.message + '</small>');
+};
 
-LoginValidator.prototype.addErrorStyle=function(field){
+LoginValidator.prototype.addErrorStyle = function (field) {
     $("input[name='" + field + "']").parent().addClass("has-error");
-}
+};
 
 
 

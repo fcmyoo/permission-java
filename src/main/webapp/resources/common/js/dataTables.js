@@ -115,7 +115,7 @@
             "displayLength": that.data.pageInfo.pageSize,// 每页记录条数，默认为10
             "serverSide": true,
             "ajaxDataProp": "data",
-            "ajaxSource": basePath + "/user/loadData",
+            // "ajaxSource": basePath + "/user/loadData",
             "fnServerData": $.proxy(that.fillDataTable, that),
             "fnInitComplete": $.proxy(that.fnInitComplete, that),
             "singleSelect": true,  //单选

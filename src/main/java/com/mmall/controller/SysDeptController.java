@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,8 +41,8 @@ public class SysDeptController {
     }
 
     @RequestMapping("/edit")
-    public ModelAndView edit() {
-
+    public ModelAndView edit(String id,HttpServletRequest request) {
+        request.setAttribute("id",id);
         return new ModelAndView("dept_edit");
     }
 

@@ -233,7 +233,7 @@
      * @author bill qq:475572229 window
      ***************************************************************************/
     //{"backdrop":"static"}点击背景不会消失  
-    var _win_config={winId:'user-win',backdrop:true,keyboard:true,width:900};
+    var _win_config={winId:'user-win',backdrop:true,keyboard:true,width:900,height:650};
     //config={win:'userWin',top:'auto'/20,width:'900px',title:'新增用户'}
     modals.openWin=function(config){ 
     	var winId=config.winId||_win_config.winId;

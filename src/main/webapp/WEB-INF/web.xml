@@ -9,6 +9,11 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
+    <!-- 项目启动加载query -->
+    <!--<listener>-->
+        <!--<listener-class>com.cnpc.framework.listener.QueryListener</listener-class>-->
+    <!--</listener>-->
+
 
     <!--spring beans 配置文件目录-->
     <context-param>
